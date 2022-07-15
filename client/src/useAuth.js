@@ -10,14 +10,17 @@ export default function useAuth(code) {
 
     useEffect(() => {
         // at port 3001, we need to go to login route and post some data which will be our code. Will code all code on server, get our response here
+        console.log('LOOK HERE code!!!', code);
         axios
         .post("http://localhost:3001/login", {
             code,
         })
         .then(res => {
-            console.log(res.data);
-            // if we have error redirect user back to login page
+            console.log(res.data)
+            window.history.pushState({}, null, "/")
         })
+            // if we have error redirect user back to login page
+        // })
         // .catch(() => {
         //     window.location = "/";
         // })
